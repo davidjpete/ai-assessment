@@ -465,9 +465,7 @@
 
   <script>
     // ── CONFIGURATION ──────────────────────────────────────────────
-    // Replace with your actual API key or proxy endpoint
     const API_ENDPOINT = 'https://claude-proxy.davidjpeterson.workers.dev';
-    const API_KEY = // See hosting notes — keep this server-side in production
 
     const MAX_EXCHANGES = 10; // AI exchanges before wrapping up
     // ───────────────────────────────────────────────────────────────
@@ -578,9 +576,7 @@ ${formSummary}`;
         const response = await fetch(API_ENDPOINT, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': API_KEY,
-            'anthropic-version': '2023-06-01',            
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             model: 'claude-sonnet-4-20250514',
@@ -728,3 +724,4 @@ ${formSummary}`;
   </script>
 </body>
 </html>
+
