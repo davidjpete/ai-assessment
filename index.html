@@ -635,7 +635,7 @@ ${formSummary}`;
 
     // ── SEND TRANSCRIPT TO MAKE ─────────────────────────────────────
     async function sendTranscript() {
-      const MAKE_WEBHOOK_URL = 'YOUR_MAKE_WEBHOOK_URL_HERE';
+      const MAKE_WEBHOOK_URL = 'https://hook.us2.make.com/5chit7wty24kfb1w7qxm8gs5mvoh9e5l';
 
       const transcript = conversationHistory
         .map(m => `${m.role.toUpperCase()}: ${m.content}`)
@@ -724,4 +724,3 @@ ${formSummary}`;
   </script>
 </body>
 </html>
-
