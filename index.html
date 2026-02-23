@@ -482,7 +482,10 @@
         const params = new URLSearchParams(window.location.search);
         const encoded = params.get('data');
         if (encoded) {
-          formData = JSON.parse(atob(encoded));
+          const decoded = atob(encoded);
+          const fields = decoded.split("|");
+          const keys = ["business_description","time_in_business","team_size","revenue_stage","role","weekly_activities","chaotic_functions","repetitive_tasks","falls_through_cracks","tech_comfort","past_adoption","ai_familiarity","ai_tried","success_vision","efficiency_rating"];
+          fields.forEach((val, i) => { if (keys[i]) formData[keys[i]] = val; });
         }
       } catch (e) {
         console.warn('No form data in URL or parse error:', e);
