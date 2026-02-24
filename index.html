@@ -639,6 +639,7 @@ ${formSummary}`;
     // ── SEND TRANSCRIPT TO MAKE ─────────────────────────────────────
     async function sendTranscript() {
       const MAKE_WEBHOOK_URL = 'https://hook.us2.make.com/5chit7wty24kfb1w7qxm8gs5mvoh9e5l';
+      const BACKUP_WEBHOOK_URL = 'https://hook.us2.make.com/nmmtt1y6p9vxq2eioad8d1ndall5i340';
 
       const transcript = conversationHistory
         .map(m => `${m.role.toUpperCase()}: ${m.content}`)
@@ -656,7 +657,21 @@ ${formSummary}`;
         });
       } catch (e) {
         console.warn('Transcript webhook failed:', e);
-        // Fail silently — client experience is not affected
+      }
+
+      // Backup transcript to Google Sheets
+      try {
+        await fetch(BACKUP_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            formData: formData,
+            transcript: transcript,
+            timestamp: new Date().toISOString()
+          })
+        });
+      } catch (e) {
+        console.warn('Backup webhook failed:', e);
       }
     }
 
